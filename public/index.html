@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hello App</title>
+</head>
+<body>
+  <h1>Hello App</h1>
+  <input type="text" id="nameInput" placeholder="Enter your name">
+  <button onclick="sendName()">Send</button>
+  <pre id="output"></pre>
+
+  <script>
+    function sendName() {
+      const name = document.getElementById("nameInput").value;
+      fetch(`/hello?name=${encodeURIComponent(name)}`)
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+        });
+    }
+  </script>
+</body>
+</html>
